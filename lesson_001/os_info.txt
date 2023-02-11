@@ -1,0 +1,4 @@
+OS info is 
+uname_result(system='Windows', node='DESKTOP-QS5NR65', release='10', version='10.0.17763', machine='AMD64', processor='Intel64 Family 6 Model 94 Stepping 3, GenuineIntel')
+
+Python version is 3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 21:26:53) [MSC v.1916 32 bit (Intel)] ('32bit', 'WindowsPE')
