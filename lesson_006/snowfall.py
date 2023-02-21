@@ -2,9 +2,11 @@ import random
 
 import simple_draw as sd
 
+sd, width, height = None, None, None
+
 snowflakes = {}
 max_count_snow = 70
-width, height = 1200, 600
+
 
 
 def new_snowflake():

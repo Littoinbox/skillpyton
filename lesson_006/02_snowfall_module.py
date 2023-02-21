@@ -17,8 +17,9 @@ import snowfall
 # обращаясь ТОЛЬКО к функциям модуля snowfall
 
 # создать_снежинки(N)
-width = 1200
-height = 600
+snowfall.width = width = 1200
+snowfall.height =height = 600
+snowfall.sd = sd
 sd.resolution = (width, height)
 sd.background_color = sd.COLOR_BLACK
 
