@@ -17,18 +17,20 @@ import snowfall
 # обращаясь ТОЛЬКО к функциям модуля snowfall
 
 # создать_снежинки(N)
-snowfall.width = width = 1200
-snowfall.height =height = 600
-snowfall.sd = sd
+#snowfall.width =
+width = 1200
+#snowfall.height =
+height = 600
+#snowfall.sd = sd
 sd.resolution = (width, height)
 sd.background_color = sd.COLOR_BLACK
 
 while True:
-    snowfall.print_color_snow(sd.background_color)
-    snowfall.move_snowflake()
-    snowfall.print_color_snow(sd.COLOR_WHITE)
-    snowfall.remove_snow(snowfall.list_del())
-    snowfall.create_snow(random.randint(1, 10))
+    snowfall.print_color_snow(sd.background_color, sd)
+    snowfall.move_snowflake(width)
+    snowfall.print_color_snow(sd.COLOR_WHITE, sd)
+    snowfall.remove_snow(snowfall.list_del(), width, height)
+    snowfall.create_snow(random.randint(1, 10), width, height)
     #  нарисовать_снежинки_цветом(color=sd.background_color)
     #  сдвинуть_снежинки()
     #  нарисовать_снежинки_цветом(color)

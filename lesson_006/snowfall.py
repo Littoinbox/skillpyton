@@ -1,15 +1,14 @@
 import random
 
-import simple_draw as sd
 
-sd, width, height = None, None, None
+
 
 snowflakes = {}
 max_count_snow = 70
 
 
 
-def new_snowflake():
+def new_snowflake(width, height):
     snowflake = {'start_x': random.randint(0, width),
                  'start_y': height,
                  'lenght': random.randint(10, 50),
@@ -19,7 +18,7 @@ def new_snowflake():
     return snowflake
 
 
-def print_color_snow(color):
+def print_color_snow(color, sd):
     global snowflakes
     for i in snowflakes:
         sd.snowflake(center=sd.get_point(snowflakes[i]['start_x'], snowflakes[i]['start_y']),
@@ -30,17 +29,16 @@ def print_color_snow(color):
                      )
 
 
-def create_snow(n):
-    global width, height
+def create_snow(n, width,height):
     global snowflakes
     for i in range(0, n):
         if len(snowflakes) <= max_count_snow:
-            snowflakes[len(snowflakes)] = new_snowflake()
+            snowflakes[len(snowflakes)] = new_snowflake(width, height)
         else:
             break
 
 
-def move_snowflake():
+def move_snowflake(width):
     global snowflakes
     for i in snowflakes:
         no_tru_point = True
@@ -61,7 +59,7 @@ def list_del():
     return delit_sow
 
 
-def remove_snow(list):
+def remove_snow(list, width, height):
     global snowflakes
     for i in list:
-        snowflakes[i] = new_snowflake()
+        snowflakes[i] = new_snowflake(width, height)
