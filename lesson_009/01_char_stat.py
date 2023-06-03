@@ -35,7 +35,8 @@ class Statistic_char:
 
     def __init__(self, file_name):
         self.file = file_name
-
+    def __del__(self):
+        os.remove(self.file)
     def extr(self):
         zip = zipfile.ZipFile(self.file)
         for file in zip.namelist():
@@ -61,7 +62,7 @@ class Statistic_char:
                 self.statistics = dict(sorted(self.statistics.items(), key=lambda x: x[1], reverse=True))
             elif (sort == 'key_up'):
                 self.statistics = dict(sorted(self.statistics.items(), key=lambda x: x[0]))
-            elif (sort == 'key_up'):
+            elif (sort == 'key_down'):
                 self.statistics = dict(sorted(self.statistics.items(), key=lambda x: x[0], reverse=True))
 
     def print_stat(self, sort='val_up'):
@@ -78,7 +79,7 @@ new_file = Statistic_char(os.path.join(os.path.dirname(__file__), 'python_snippe
 
 new_file.extr()
 new_file.getStat()
-new_file.print_stat(sort="val_down")
+new_file.print_stat()
 
 # После зачета первого этапа нужно сделать упорядочивание статистики
 #  - по частоте по возрастанию
