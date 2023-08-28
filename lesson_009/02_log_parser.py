@@ -59,11 +59,12 @@ class EventsRestruckt:
                         self.statistic[date.strftime(self.group)] += 1
                     else:
                         self.statistic[date.strftime(self.group)] = 1
+
     def writeStat(self):
-        if len(self.outFile) >0 and len(self.statistic) >0:
+        if len(self.outFile) > 0 and len(self.statistic) > 0:
             file = open(os.path.join(os.path.dirname(__file__), self.outFile), 'w')
             for key in self.statistic:
-                   file.write(str(key)+" "+ str(self.statistic[key])+"\r")
+                file.write(str(key) + " " + str(self.statistic[key]) + "\r")
 
 
 newEvent = EventsRestruckt('events.txt', 'newEvent.txt')
