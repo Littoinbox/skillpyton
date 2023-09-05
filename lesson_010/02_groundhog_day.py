@@ -22,49 +22,43 @@ ENLIGHTENMENT_CARMA_LEVEL = 777
 
 
 class IamGodError(Exception):
-    def returnError(self):
-        return "Исключение бога"
+    pass
 
 
 class DrunkError(Exception):
-    def returnError(self):
-        return "Исключение пьяни"
+    pass
 
 
 class CarCrashError(Exception):
-    def returnError(self):
-        return "Исключение Автоаварии"
+    pass
 
 
 class GluttonyError(Exception):
-    def returnError(self):
-        return "Исключение чревоугодья"
+    pass
 
 
 class DepressionError(Exception):
-    def returnError(self):
-        return "Исключение депрессии"
+    pass
 
 
 class SuicideError(Exception):
-    def returnError(self):
-        return "Исключение суицидв"
+    pass
 
 
 def randomExeption():
     errorNumber = random.randint(1, 6)
     if errorNumber == 1:
-        return IamGodError()
+        return IamGodError("Исключение бога")
     if errorNumber == 2:
-        return DrunkError()
+        return DrunkError("Исключение пьяни")
     if errorNumber == 3:
-        return CarCrashError()
+        return CarCrashError("Исключение Автоавирии")
     if errorNumber == 4:
-        return GluttonyError()
+        return GluttonyError("Исключение чревоугодья")
     if errorNumber == 5:
-        return DepressionError()
+        return DepressionError("Исключение депрессии")
     if errorNumber == 6:
-        return SuicideError()
+        return SuicideError("Исключение суицида")
 
 
 def one_day():
@@ -82,17 +76,17 @@ while karmaSumma <= ENLIGHTENMENT_CARMA_LEVEL:
         day += 1
         karmaSumma += one_day()
     except  IamGodError as err:
-        print(f"Произошла ошибка {err.__class__.__name__}, Текст ощибки {err.returnError()}")
+        print(f"Произошла ошибка {type(err)}, Текст ощибки {err}")
     except  DrunkError as err:
-        print(f"Произошла ошибка {err.__class__.__name__}, Текст ощибки {err.returnError()}")
+        print(f"Произошла ошибка {type(err)}, Текст ощибки {err}")
     except  CarCrashError as err:
-        print(f"Произошла ошибка {err.__class__.__name__}, Текст ощибки {err.returnError()}")
+        print(f"Произошла ошибка {type(err)}, Текст ощибки {err}")
     except  GluttonyError as err:
-        print(f"Произошла ошибка {err.__class__.__name__}, Текст ощибки {err.returnError()}")
+        print(f"Произошла ошибка {type(err)}, Текст ощибки {err}")
     except  DepressionError as err:
-        print(f"Произошла ошибка {err.__class__.__name__}, Текст ощибки {err.returnError()}")
+        print(f"Произошла ошибка {type(err)}, Текст ощибки {err}")
     except  SuicideError as err:
-        print(f"Произошла ошибка {err.__class__.__name__}, Текст ошибки {err.returnError()}")
+        print(f"Произошла ошибка {type(err)}, Текст ошибки {err}")
     finally:
         print(f"Прошел {day} день, карма равна {karmaSumma}")
 # https://goo.gl/JnsDqu
