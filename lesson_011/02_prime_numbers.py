@@ -14,6 +14,7 @@ def get_prime_numbers(n):
             prime_numbers.append(number)
     return prime_numbers
 
+
 # Часть 1
 # На основе алгоритма get_prime_numbers создать класс итерируемых обьектов,
 # который выдает последовательность простых чисел до n
@@ -22,29 +23,78 @@ def get_prime_numbers(n):
 
 
 class PrimeNumbers:
-    pass
-    # TODO здесь ваш код
+    def __init__(self, n):
+        self.n = n
+        self.data = get_prime_numbers(self.n)
+        self.i = 0
+
+    def __iter__(self):
+        self.i = 0
+        return self
+
+    def __next__(self):
+        self.i += 1
+        if (self.i <= len(self.data)):
+            #map(is_lucky_number, self.data[self.i - 1])
+            #map(is_palindrom_number, self.data[self.i - 1])
+            return self.data[self.i - 1]
+        else:
+            raise StopIteration()
 
 
 prime_number_iterator = PrimeNumbers(n=10000)
 for number in prime_number_iterator:
-    print(number)
-
-
-# TODO после подтверждения части 1 преподователем, можно делать
-# Часть 2
-# Теперь нужно создать генератор, который выдает последовательность простых чисел до n
-# Распечатать все простые числа до 10000 в столбик
+   print(number)
 
 
 def prime_numbers_generator(n):
-    pass
-    # TODO здесь ваш код
-
+    prime_numbers = []
+    for number in range(2, n + 1):
+        for prime in prime_numbers:
+            if number % prime == 0:
+                break
+        else:
+            yield number
+            prime_numbers.append(number)
 
 for number in prime_numbers_generator(n=10000):
     print(number)
 
+
+def is_lucky_number(num):
+    number_str = str(num)
+    if len(number_str) % 2 == 1:
+        middle_index = len(number_str) // 2
+        first_half = number_str[:middle_index]
+        second_half = number_str[middle_index + 1:]
+    else:
+        middle_index = len(number_str) // 2
+        first_half = number_str[:middle_index]
+        second_half = number_str[middle_index:]
+    first_half_sum = sum(int(digit) for digit in first_half)
+    second_half_sum = sum(int(digit) for digit in second_half)
+    if first_half_sum == second_half_sum:
+        print('Lucky number true')
+        return True
+    else:
+        return False
+
+
+def is_palindrom_number(num):
+    number_str = str(num)
+    if len(number_str) % 2 == 1:
+        middle_index = len(number_str) // 2
+        first_half = number_str[:middle_index]
+        second_half = "".join(reversed(number_str[middle_index + 1:]))
+    else:
+        middle_index = len(number_str) // 2
+        first_half = number_str[:middle_index]
+        second_half = "".join(reversed(number_str[middle_index:]))
+    if (first_half == second_half):
+        print("Palindron number true")
+        return True
+    else:
+        return False
 
 # Часть 3
 # Написать несколько функций-фильтров, которые выдает True, если число:
