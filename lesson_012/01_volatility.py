@@ -74,7 +74,6 @@ import os
 #     def run(self):
 #         <обработка данных>
 
-# TODO написать код в однопоточном/однопроцессорном стиле
 class Valatation:
 
     def __init__(self, path):
