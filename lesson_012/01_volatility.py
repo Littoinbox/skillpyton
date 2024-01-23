@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 
 # Описание предметной области:
@@ -74,3 +75,69 @@
 #         <обработка данных>
 
 # TODO написать код в однопоточном/однопроцессорном стиле
+class Valatation:
+
+    def __init__(self, path):
+        self.path = path
+        self.list = {}
+        self.max = 0
+        self.min = 0
+        self.half_sum = 0
+        self.volatility = 0
+
+    def run(self):
+        for dirpath, dirnames, filenames in os.walk(self.path):
+            for file in filenames:
+                full_file_path = os.path.join(dirpath, file)
+                self.read_file(full_file_path)
+
+    def read_file(self, full_file_path):
+        with open(full_file_path, mode='r', encoding='utf8') as file:
+            self.max = 0
+            self.min = -1
+            self.half_sum = 0
+            self.volatility = 0
+            self.name = ''
+            for line in file:
+                l = line.split(",")
+                if l[1] == 'TRADETIME':
+                    continue
+                self.name = l[0]
+                if float(l[2]) > self.max:
+                    self.max = float(l[2])
+                    self.calcVal()
+                if float(l[2]) < self.min or self.min == -1:
+                    self.min = float(l[2])
+                    self.calcVal()
+            self.list[self.name] = self.volatility
+
+    def calcVal(self):
+        try:
+            self.half_sum = (self.min + self.max) / 2
+            self.volatility = ((self.max - self.min) / self.half_sum) * 100
+        except (ZeroDivisionError):
+            self.half_sum = 0
+            self.volatility = 0
+
+
+def print_info(list):
+    maxValue = sorted(list.items(), key=lambda x: x[1], reverse=True)[:3]
+    non_zero_values = [v for k, v in list.items() if v != 0]
+    minValue = sorted(non_zero_values)[:3]
+    zeroVal = sorted([k for k, v in list.items() if v == 0])
+
+    print("Максимальная волатильность:")
+    for key, val in maxValue:
+        print(" " * 3, key, " - ", val)
+    print("Минимальная волатильность:")
+    for value in minValue:
+        key = [k for k, val in list.items() if val == value][0]
+        print(" " * 3, key, " - ", value)
+    print("Нулевая волатильность:")
+    print(', '.join(zeroVal))
+
+
+
+v = Valatation('trades')
+v.run()
+print_info(v.list)
