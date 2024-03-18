@@ -7,7 +7,6 @@
 # - вывести на консоль результаты
 
 import requests
-
 from extractor import LinkExtractor
 from utils import time_track
 
